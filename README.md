@@ -9,6 +9,29 @@ El repositorio reúne los **archivos RTL y testbenches originales**, las descrip
 | [miniACA](miniACA/README.md) | `miniaca` | `c2p9` | Autómata celular asincrónico programable de cinco células, con LUT compartida de 32 bits y 5 bits de condición inicial |
 | [retardos](retardos/README.md) | `tffchain` | `c2p10` | Cinco cadenas independientes de dos flip-flops T, con salidas `/2` y `/4` respecto de cada entrada |
 
+<!-- INICIO: modos de funcionamiento -->
+## miniACA — autómata celular programable (`c2p9`)
+
+### Modo de uso (`Prog = 0`)
+
+![miniACA: conexiones de las cinco células en modo de uso](miniACA/docs/miniACA_modo_uso.png)
+
+Cada una de las **cinco células** recibe **cinco entradas**: su entrada `I` correspondiente y las entradas de las dos posiciones vecinas a cada lado. En los extremos se utilizan las entradas adicionales `I01`, `I02`, `I41` e `I42`, que permiten conectar otro CI o cerrar la realimentación externamente. Cada célula aplica la misma **regla configurable de 32 bits** y entrega su resultado en `O[4:0]`.
+
+### Modo de programación (`Prog = 1`)
+
+Se cargan en serie los **32 bits de la regla** y los **5 bits de la condición inicial** en un registro de 37 flip-flops. Las señales `I[0]` (Reset), `I[1]` (Enable), `I[2]` (Data) y `Clock` controlan la carga. En este modo, `O[4:0]` muestra la condición inicial almacenada.
+
+*Esquema del modo de programación: pendiente de incorporar.*
+
+## Cadena de flip-flops T — `tffchain` (`c2p10`)
+
+El segundo circuito contiene **cinco cadenas independientes**, cada una con dos flip-flops T en cascada. Cada entrada `i_x1[i]` hace conmutar la primera etapa (`o_x2[i]`) y esta activa la segunda (`o_x4[i]`). Para una señal periódica, las frecuencias de salida son la mitad y la cuarta parte de la frecuencia de entrada. Ambas etapas comparten un reset asincrónico activo en alto (`i_rst`).
+
+*Esquema de la cadena de flip-flops: pendiente de incorporar.*
+
+<!-- FIN: modos de funcionamiento -->
+
 ## Archivos principales
 
 ```text
