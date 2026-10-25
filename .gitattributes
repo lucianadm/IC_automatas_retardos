@@ -1,0 +1,9 @@
+*.v text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+*.yml text eol=lf
+*.ps1 text eol=crlf
+*.drawio text eol=lf
+*.png binary
+*.pdf binary
+*.xls binary
